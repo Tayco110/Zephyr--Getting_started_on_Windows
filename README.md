@@ -167,22 +167,51 @@ Para identificar o comando adequado à sua placa é recomendado consultar a docu
 
 * Caso todos os passos tenha sido seguidos corretamente até este ponto, deve aparecer em seu terminal após a execução do comando uma mensagem similar à mostrada abaixo:
 
-```bash
-[162/162] Linking C executable zephyr\zephyr.elf
-Memory region         Used Size  Region Size  %age Used
-           FLASH:       23496 B       512 KB      4.48%
-             RAM:        8388 B        64 KB     12.80%
-        IDT_LIST:          0 GB         2 KB      0.00%
-``` 
+    ```bash
+    [162/162] Linking C executable zephyr\zephyr.elf
+    Memory region         Used Size  Region Size  %age Used
+               FLASH:       23496 B       512 KB      4.48%
+                 RAM:        8388 B        64 KB     12.80%
+            IDT_LIST:          0 GB         2 KB      0.00%
+    ``` 
 
 Essa mensagem indica que o processo de construção do projeto foi executado sem falhas.
 
 * Caso contrário:
 
-```bash
-required program nrfjprog not found; install it or add its location to PATH
-```
+    ```bash
+    required program nrfjprog not found; install it or add its location to PATH
+    ```
 
 Essa mensagem acusa a falta do [nRF Command Line Tools](https://www.nordicsemi.com/Products/Development-tools/nrf-command-line-tools/download) em seu computador.
+
+## Flash
+
+É o processo de "gravação" do projeto na placa.
+
+1. Realize a conexão da placa de desenvolvimento em seu computador. Normalmente a conexão é realizada via USB.
+
+2. Uma vez que o processo de *build* foi realizado, podemos agora utilizar o seguinte comando da ferramenta [west](https://docs.zephyrproject.org/latest/develop/west/build-flash-debug.html#west-building) para gravar o programa:
+
+    ```bash
+    west flash
+    ```
+Para mais detalhes sobre o comando é recomendado a leitura da [documentação](https://docs.zephyrproject.org/latest/develop/west/build-flash-debug.html#west-flashing).
+
+* Caso o processo de *flash* tenha ocorrido sem erros, deve aparecer em seu terminal após a execução do comando uma mensagem similar a mostrada abaixo:
+
+    ```bash
+    -- runners.nrfjprog: Board with serial number 682720322 flashed successfully.
+    ```
+
+Essa mensagem indica que o processo de gravação do projeto foi executado sem falhas.
+
+* Caso contrário:
+
+    ```bash
+    FATAL ERROR: "nrfjprog --ids" did not find a board; is the board connected?
+    ```
+
+Essa mensagem indica que a placa não foi encontrada. Verifique se a mesma se encontra conectada e alimentada.
 
 
