@@ -214,4 +214,13 @@ Essa mensagem indica que o processo de gravação do projeto foi executado sem f
 
 Essa mensagem indica que a placa não foi encontrada. Verifique se a mesma se encontra conectada e alimentada.
 
+# Resultado
+
+![resultado](https://user-images.githubusercontent.com/44499744/206791017-33345823-e278-4d0e-8503-4f76db7390d9.gif)
+
+<p align="center"> 
+<b>Figura 1:</b> Resultado.
+</p>
+
+
 
