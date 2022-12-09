@@ -114,3 +114,75 @@ Ainda na janela do `cmd.exe`.
 Caso a estrutura não esteja de acordo, garanta que ambas as pastas `zephyrproject` e `zephyr-sdk-0.15.2` estejam no mesmo espaço de trabalho.
 
 
+# Build e Flash
+
+O exemplo utilizado para ser *buildado* e em seguida *flashado* na placa de desenvolvimento [Nordic - nrf52832](https://docs.zephyrproject.org/2.7.0/boards/arm/nrf52dk_nrf52832/doc/index.html) se baseia em utilizar uma UART em conjunto de Threads para interagir com o usuário do programa. Mais detalhes podem ser encontrados na [documentação do projeto](https://github.com/Tayco110/Zephyr--Getting_started_on_Windows/blob/main/sample/README.md).
+
+## Requisitos
+
+| Ferramenta | Motivo |
+| :------: | :------: |
+| [nRF Command Line Tools](https://www.nordicsemi.com/Products/Development-tools/nrf-command-line-tools/download)| Garantir a comunicação entre o computador e a placa |
+| [Tera Term](https://ttssh2.osdn.jp/index.html.en) | Garantir a interação entre o Usuário e o Programa |
+
+Aqui cabem algumas observações. A ferramenta Tera Term é apenas uma sujestão, ficando a critério do desenvolvedor escolher qual ferramente utilizar. A instalação da `nRF Command Line Tools` se faz nescessário caso não exista nenhum drive de desenvolvimento da [Nordic](https://www.nordicsemi.com/) instalado em seu computador.
+
+## Build
+
+É o processo de "construção" do projeto que será gravado na placa. 
+
+1. Clone o exemplo [sample](https://github.com/Tayco110/Zephyr--Getting_started_on_Windows/tree/main/sample) presente na raiz deste repositório.
+
+2. Aloque a pasta do projeto dentro do diretório `zephyrproject` presente em sua pasta de trabalho, no caso deste turoarial: `workspace`. Ao fim da execução do ultimo passo, a seguinte estrutura de diretórios deve está montada:
+
+    ```
+    workspace/
+        ├──zephyrproject/
+        |   ├──sample/
+        |   |   ├──src/
+        |   |   |  └───main.c
+        |   |   ├──CMakeLists.txt
+        |   |   ├──prj.conf
+        |   └───...
+        └──zephyr-sdk-0.15.2/
+    ```
+
+3. Abra o `cmd.exe` e vá para o diretório do projeto
+
+    ```bash
+    cd ..\workspace\zephyrproject\sample
+    ```
+4. Execute o seguinte comando para *buildar* o projeto utilizando a ferramenta [west](https://docs.zephyrproject.org/latest/develop/west/build-flash-debug.html#west-building)
+
+    ```bash
+    west build -b <BOARD>
+    ```
+
+Como citado anteriormente, estamos utilizando a placa de desenvolvimento [Nordic - nrf52832](https://docs.zephyrproject.org/2.7.0/boards/arm/nrf52dk_nrf52832/doc/index.html). Dessa forma, o comando em questão seria:
+
+```bash
+west build -b nrf52dk_nrf52832
+```
+Para identificar o comando adequado à sua placa é recomendado consultar a documentação oficial do Zephyr: [*Supported Boards*](https://docs.zephyrproject.org/latest/boards/index.html#boards).
+
+* Caso todos os passos tenha sido seguidos corretamente até este ponto, deve aparecer em seu terminal após a execução do comando uma mensagem similar à mostrada abaixo:
+
+```bash
+[162/162] Linking C executable zephyr\zephyr.elf
+Memory region         Used Size  Region Size  %age Used
+           FLASH:       23496 B       512 KB      4.48%
+             RAM:        8388 B        64 KB     12.80%
+        IDT_LIST:          0 GB         2 KB      0.00%
+``` 
+
+Essa mensagem indica que o processo de construção do projeto foi executado sem falhas.
+
+* Caso contrário:
+
+```bash
+required program nrfjprog not found; install it or add its location to PATH
+```
+
+Essa mensagem acusa a falta do [nRF Command Line Tools](https://www.nordicsemi.com/Products/Development-tools/nrf-command-line-tools/download) em seu computador.
+
+
