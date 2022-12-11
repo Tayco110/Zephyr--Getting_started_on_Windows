@@ -17,7 +17,7 @@ Instale qualquer atualização obrigatória que esteja disponível.
 | Ferramenta | Versão mínima |
 | :------: | :------: |
 | [CMake](https://cmake.org/) | 3.20.0 |
-| [Python](https://www.python.org/) | 3.8.0 |
+| [Python](https://www.python.org/) | 3.8.10 |
 | [Chocolatey](https://chocolatey.org/install) | --- |
 
 As instruções apresentadas baixo devem ser executadas no `cmd.exe` do Windows em sua versão de administrador.
