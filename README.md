@@ -219,7 +219,7 @@ Essa mensagem indica que a placa não foi encontrada. Verifique se a mesma se en
 ![resultado](https://user-images.githubusercontent.com/44499744/206791017-33345823-e278-4d0e-8503-4f76db7390d9.gif)
 
 <p align="center"> 
-<b>Figura 1:</b> Resultado.
+<b>Figura 1:</b> .Gif com o resultado.
 </p>
 
 
